@@ -3,6 +3,12 @@ from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from orders.views import OrderCreateAPIView
 
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+    SpectacularRedocView,
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/rest-auth/", include('rest_framework.urls', namespace='rest_framework')),
@@ -14,4 +20,7 @@ urlpatterns = [
     path('api/cart/', include('carts.urls')),
     path('api/orders/', include('orders.urls')),
     path('api/order/create/', OrderCreateAPIView.as_view(), name='order_create_single'),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]

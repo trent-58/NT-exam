@@ -15,15 +15,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # "unfold",
-    # "unfold.contrib.filters",
-    # "unfold.contrib.forms",
-    # "unfold.contrib.inlines",
-    # "unfold.contrib.import_export",
-    # "unfold.contrib.guardian",
-    # "unfold.contrib.simple_history",
-    # "unfold.contrib.location_field",
-    # "unfold.contrib.constance",
+    "unfold",
+    "unfold.contrib.filters",
+    "unfold.contrib.forms",
+    "unfold.contrib.inlines",
+    "unfold.contrib.import_export",
+    "unfold.contrib.guardian",
+    "unfold.contrib.simple_history",
+    "unfold.contrib.location_field",
+    "unfold.contrib.constance",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    "drf_spectacular",
     'accounts',
     'baseapp',
     'carts',
@@ -127,6 +128,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 from datetime import timedelta
@@ -134,4 +136,11 @@ from datetime import timedelta
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'My API',
+    'DESCRIPTION': 'API documentation',
+    'VERSION': '1.0.0',
 }

@@ -134,7 +134,4 @@ class CommentsListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         queryset = Comment.objects.filter(is_deleted=False)
-        user = self.request.user
-        if user.is_staff or user.is_superuser:
-            return queryset
-        return queryset.filter(user=user)
+        return queryset
