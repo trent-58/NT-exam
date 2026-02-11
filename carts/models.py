@@ -5,7 +5,7 @@ from products.models import Product
 
 
 class Cart(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="carts")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="carts")
     checked_out_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
